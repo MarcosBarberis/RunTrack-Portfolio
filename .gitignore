@@ -1,0 +1,28 @@
+# Visual Studio
+.vs/
+
+# .NET
+**/bin/
+**/obj/
+
+# No subir configuración local
+**/appsettings.Development.json
+
+# Node / React
+**/node_modules/
+**/dist/
+**/.vite/
+
+# Variables de entorno
+**/.env
+**/.env.*
+
+# SQL de prueba
+SQLQuery*.sql
+# Builds locales y binarios
+TempBuild/
+build-check-output*.txt
+**/publish/
+
+# Python
+__pycache__/
