@@ -266,7 +266,7 @@ namespace RunTrack.Api.Controllers
             if (months < 1) months = 1;
             if (months > 12) months = 12;
             if (runner.BillingCycleDays <= 0) runner.BillingCycleDays = 30;
-            if (runner.GraceDays <= 0) runner.GraceDays = 7;
+            if (runner.GraceDays <= 0) runner.GraceDays = 3;
 
             runner.LastPaymentDate = paidAt.AddDays(runner.BillingCycleDays * (months - 1));
 

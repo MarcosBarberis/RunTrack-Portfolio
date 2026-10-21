@@ -46,7 +46,7 @@ public class MembershipController : ControllerBase
         DateTime? hardBlockDate = null;
 
         var cycle = runner.BillingCycleDays <= 0 ? 30 : runner.BillingCycleDays;
-        var grace = runner.GraceDays <= 0 ? 7 : runner.GraceDays;
+        var grace = runner.GraceDays <= 0 ? 3 : runner.GraceDays;
 
         FeeStatus feeStatus;
 

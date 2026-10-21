@@ -219,7 +219,7 @@ export default function RunnerPlan() {
           ) : statusQ.data?.planVisible === false ? (
             <Card>
               <div className="text-slate-200">
-                Tu cuota está vencida hace más de 7 días. Contactá al coach para
+                Tu cuota está vencida hace más de 3 días. Contactá al coach para
                 regularizar.
               </div>
             </Card>

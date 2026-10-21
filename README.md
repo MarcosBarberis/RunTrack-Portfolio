@@ -36,7 +36,7 @@ La coach de AF Running entrena a decenas de corredores y necesita saber, cada se
 
 - **Para el coach:** alta y baja de corredores, categorías, planificación de entrenamientos, control de asistencia, registro de pagos, seguimiento de deslinde y EMMAC, reportes filtrables y alertas automáticas.
 - **Para el runner:** plan según su categoría, registro de asistencia y resultados (distancia, tiempo, esfuerzo, molestias), entrenamientos libres, estado de su cuota y rachas de asistencia.
-- **Reglas automáticas:** la cuota pasa de *al día* a *por vencer* y *vencida*; tras 7 días de gracia el plan se bloquea solo. El EMMAC vence en el próximo cumpleaños y avisa 30 días antes.
+- **Reglas automáticas:** la cuota pasa de *al día* a *por vencer* y *vencida*; tras 3 días de gracia el plan se bloquea solo. El EMMAC vence en el próximo cumpleaños y avisa 30 días antes.
 
 > **Demo:** la versión publicada corre 100 % en el navegador con datos ficticios. Entrá como coach con `coach` / `demo1234` o como runner con el DNI `30111222`.
 
@@ -113,7 +113,7 @@ Capturas del sistema en producción. Los DNI, el nombre de la coach y las fotos 
 **Membresía**
 - Ciclo de 30 días desde el último pago.
 - *Por vencer* desde 5 días antes del vencimiento.
-- Período de gracia de 7 días; después, el plan se bloquea automáticamente.
+- Período de gracia de 3 días; después, el plan se bloquea automáticamente.
 
 **Documentación**
 - Deslinde obligatorio, sin vencimiento.

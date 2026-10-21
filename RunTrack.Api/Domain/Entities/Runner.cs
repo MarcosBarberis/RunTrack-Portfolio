@@ -20,7 +20,7 @@
 
         public DateTime? LastPaymentDate { get; set; }
         public int BillingCycleDays { get; set; } = 30;
-        public int GraceDays { get; set; } = 7;
+        public int GraceDays { get; set; } = 3;
 
         public DateTime? WaiverDeliveredAt { get; set; }
         public DateTime? EmacDeliveredAt { get; set; }

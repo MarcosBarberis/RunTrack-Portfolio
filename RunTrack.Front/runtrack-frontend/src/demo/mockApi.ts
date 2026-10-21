@@ -295,7 +295,7 @@ function nextId(): number {
 // Reglas de negocio (espejo simplificado de la API)
 // ---------------------------------------------------------------------------
 const BILLING_CYCLE_DAYS = 30;
-const GRACE_DAYS = 7;
+const GRACE_DAYS = 3;
 
 function billing(r: Runner) {
   const t = today();
