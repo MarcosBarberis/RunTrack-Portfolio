@@ -1,11 +1,13 @@
 <div align="center">
 
-<img src="RunTrack.Front/runtrack-frontend/public/media/brand/logo.png" alt="RunTrack" width="320" />
+<img src="RunTrack.Front/runtrack-frontend/public/media/brand/logo.png" alt="AF Running" width="300" />
+
+# RunTrack
 
 ### Plataforma de gestión para grupos de running
 
 Planificación de entrenamientos, asistencia, cuotas, documentación médica y métricas de rendimiento en un solo lugar.
-Desarrollada y desplegada para un grupo de entrenamiento real.
+Desarrollada a medida y en producción para el grupo de entrenamiento **AF Running**.
 
 [![CI](https://github.com/MarcosBarberis/RunTrack-Portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/MarcosBarberis/RunTrack-Portfolio/actions/workflows/ci.yml)
 ![.NET 8](https://img.shields.io/badge/.NET-8-512BD4?logo=dotnet&logoColor=white)
@@ -30,7 +32,7 @@ Desarrollada y desplegada para un grupo de entrenamiento real.
 
 ## Qué resuelve
 
-Un coach que entrena a decenas de corredores necesita saber, cada semana, quién vino, quién está al día con la cuota, a quién se le vence el apto médico y cómo evoluciona el grupo. RunTrack reúne todo eso en un panel y le da a cada runner su propio espacio para ver el plan y cargar sus resultados.
+La coach de AF Running entrena a decenas de corredores y necesita saber, cada semana, quién vino, quién está al día con la cuota, a quién se le vence el apto médico y cómo evoluciona el grupo. RunTrack reúne todo eso en un panel y le da a cada runner su propio espacio para ver el plan y cargar sus resultados.
 
 - **Para el coach:** alta y baja de corredores, categorías, planificación de entrenamientos, control de asistencia, registro de pagos, seguimiento de deslinde y EMMAC, reportes filtrables y alertas automáticas.
 - **Para el runner:** plan según su categoría, registro de asistencia y resultados (distancia, tiempo, esfuerzo, molestias), entrenamientos libres, estado de su cuota y rachas de asistencia.
@@ -40,28 +42,36 @@ Un coach que entrena a decenas de corredores necesita saber, cada semana, quién
 
 ## Capturas
 
-| Panel del coach | Cuotas y bloqueo automático |
+Capturas del sistema en producción. Los DNI, el nombre de la coach y las fotos del grupo están desenfocados.
+
+| Panel de rendimiento | Sesiones, RPE y comentarios |
 |---|---|
-| <img src="docs/screenshots/coach-dashboard.webp" alt="Dashboard con KPIs y gráficos semanales" /> | <img src="docs/screenshots/coach-billing.webp" alt="Estado de cuotas por runner" /> |
-| **Corredores** con alerta de cumpleaños | **Documentación** (deslinde y EMMAC) |
-| <img src="docs/screenshots/coach-runners.webp" alt="Listado de corredores" /> | <img src="docs/screenshots/coach-documents.webp" alt="Control de documentación" /> |
-| **Planificación** de entrenamientos | **Asistencia** con exportación a CSV |
-| <img src="docs/screenshots/coach-training-events.webp" alt="Planificación de entrenamientos" /> | <img src="docs/screenshots/coach-attendance.webp" alt="Reporte de asistencia" /> |
+| <img src="docs/screenshots/coach-dashboard.webp" alt="Dashboard con KPIs y gráficos semanales" /> | <img src="docs/screenshots/coach-dashboard-rpe.webp" alt="Sesiones y RPE por semana" /> |
+| **Cuotas** y bloqueo automático | **Documentación** (deslinde y EMMAC) |
+| <img src="docs/screenshots/coach-billing.webp" alt="Estado de cuotas por runner" /> | <img src="docs/screenshots/coach-documents.webp" alt="Control de documentación" /> |
+| **Corredores** con alerta de cumpleaños | **Planificación** de entrenamientos |
+| <img src="docs/screenshots/coach-runners.webp" alt="Listado de corredores" /> | <img src="docs/screenshots/coach-training-events.webp" alt="Planificación de entrenamientos" /> |
+| **Asistencia** con exportación a CSV | **Entrenamientos** registrados por los runners |
+| <img src="docs/screenshots/coach-attendance.webp" alt="Reporte de asistencia" /> | <img src="docs/screenshots/coach-workouts.webp" alt="Seguimiento de entrenamientos" /> |
 
 <table>
   <tr>
-    <th>Vista del runner (móvil)</th>
+    <th>Plan del runner</th>
+    <th>Rachas</th>
     <th>Carga de un entrenamiento</th>
-    <th>Landing</th>
+    <th>Entrenamiento libre</th>
   </tr>
   <tr>
-    <td width="25%"><img src="docs/screenshots/runner-plan.webp" alt="Plan del runner con estado de cuota y rachas" /></td>
+    <td width="25%"><img src="docs/screenshots/runner-plan.webp" alt="Plan del runner con estado de cuota" /></td>
+    <td width="25%"><img src="docs/screenshots/runner-streak.webp" alt="Racha actual y mejor racha" /></td>
     <td width="25%"><img src="docs/screenshots/runner-event.webp" alt="Registro de asistencia y resultados" /></td>
-    <td width="50%"><img src="docs/screenshots/home.webp" alt="Página de inicio" /></td>
+    <td width="25%"><img src="docs/screenshots/runner-free-workout.webp" alt="Carga de un entrenamiento libre" /></td>
   </tr>
 </table>
 
-<sub>Todas las capturas usan datos ficticios de la demo.</sub>
+| Landing del grupo | Top 5 de rachas | Categorías |
+|---|---|---|
+| <img src="docs/screenshots/home.webp" alt="Página de inicio" /> | <img src="docs/screenshots/coach-top-streaks.webp" alt="Ranking de rachas históricas" /> | <img src="docs/screenshots/coach-categories.webp" alt="ABM de categorías" /> |
 
 ## Funcionalidades
 
@@ -207,7 +217,7 @@ erDiagram
 - El login tiene *rate limiting* por IP para frenar intentos de fuerza bruta.
 - Los secretos (clave JWT, hash del coach, conexión) vienen de variables de entorno; la API no arranca si la clave JWT falta o es débil.
 
-**Demo sin backend.** Para mostrar el proyecto sin exponer datos del cliente, el frontend tiene un modo demo (`VITE_DEMO_MODE=true`) que reemplaza las llamadas HTTP por una API simulada en el navegador ([`src/demo/mockApi.ts`](RunTrack.Front/runtrack-frontend/src/demo/mockApi.ts)). Replica las reglas de negocio principales sobre datos ficticios y se publica automáticamente en GitHub Pages en cada push.
+**Demo sin backend.** Para mostrar el proyecto sin exponer datos de los corredores, el frontend tiene un modo demo (`VITE_DEMO_MODE=true`) que reemplaza las llamadas HTTP por una API simulada en el navegador ([`src/demo/mockApi.ts`](RunTrack.Front/runtrack-frontend/src/demo/mockApi.ts)). Replica las reglas de negocio principales sobre datos ficticios y se publica automáticamente en GitHub Pages en cada push.
 
 ## Correr en local
 
@@ -265,8 +275,8 @@ RunTrack.Front/runtrack-frontend/
 ├── src/services/api.ts       Cliente HTTP y sesión
 └── src/demo/                 API simulada para la demo
 database/schema.sql           Script SQL generado desde las migraciones
-docs/screenshots/             Capturas de la demo
-tools/                        Generador de las imágenes ficticias de la demo
+docs/screenshots/             Capturas del sistema (datos sensibles desenfocados)
+tools/                        Generador de la galería y los videos ficticios de la landing
 .github/workflows/            CI y publicación de la demo
 ```
 
@@ -281,4 +291,4 @@ Diseñé y desarrollé RunTrack de punta a punta: relevamiento con el cliente, m
 
 ---
 
-<sub>Este repositorio es la versión de portfolio de un sistema en producción. El código es público con fines de demostración; los datos, imágenes y nombres que aparecen son ficticios. Todos los derechos reservados.</sub>
+<sub>Este repositorio es la versión de portfolio de un sistema en producción. El código es público con fines de demostración. La marca y el logo de AF Running pertenecen a su titular y se muestran con su autorización. Los datos de la demo son ficticios y en las capturas se desenfocaron los datos personales. Todos los derechos reservados.</sub>

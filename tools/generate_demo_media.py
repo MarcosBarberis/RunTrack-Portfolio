@@ -1,7 +1,8 @@
-"""Genera los recursos visuales ficticios de RunTrack (logo, galería y videos).
+"""Genera la galería y los videos ficticios de la landing de RunTrack.
 
 Todo es arte generado: no hay fotos ni datos de personas reales.
-Uso: python3 make_media.py <carpeta public/media>
+Usa el isotipo de AF Running (public/media/brand/logo2.png), que no se modifica.
+Uso: python3 tools/generate_demo_media.py RunTrack.Front/runtrack-frontend/public/media
 """
 import math
 import os
@@ -31,50 +32,12 @@ def gradient_color(t):
     return lerp(GREEN, PINK, t * 2) if t < 0.5 else lerp(PINK, YELLOW, (t - 0.5) * 2)
 
 
-# ---------------------------------------------------------------- logo
-def draw_mark(d, x, y, h):
-    """Tres carriles inclinados: el isotipo de RunTrack."""
-    w = h * 0.22
-    gap = h * 0.12
-    for i, c in enumerate((GREEN, PINK, YELLOW)):
-        ox = x + i * (w + gap)
-        d.polygon([(ox + h * 0.35, y), (ox + h * 0.35 + w, y), (ox + w, y + h), (ox, y + h)], fill=c)
-    return x + 3 * (w + gap) + h * 0.35
-
-
-def logo_wide(path, scale=1.0):
-    W, H = int(820 * scale), int(240 * scale)
-    im = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    d = ImageDraw.Draw(im)
-    end = draw_mark(d, 20 * scale, 40 * scale, 160 * scale)
-    f = font("InterDisplay-BlackItalic.otf", int(120 * scale))
-    d.text((end + 20 * scale, 38 * scale), "Run", font=f, fill=TEXT)
-    run_w = d.textlength("Run", font=f)
-    d.text((end + 20 * scale + run_w, 38 * scale), "Track", font=f, fill=GREEN)
-    im = im.crop(im.getbbox())
-    im.save(path)
-
-
-def logo_square(path, size=500):
-    im = Image.new("RGBA", (size, size), (0, 0, 0, 0))
-    d = ImageDraw.Draw(im)
-    d.rounded_rectangle([0, 0, size - 1, size - 1], radius=size * 0.22, fill=BG)
-    h = size * 0.5
-    total = 3 * (h * 0.22 + h * 0.12) + h * 0.35
-    draw_mark(d, (size - total) / 2, (size - h) / 2, h)
-    im.save(path)
-
-
-def favicon_svg(path):
-    svg = """<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<rect width="64" height="64" rx="14" fill="#020617"/>
-<polygon points="20,16 27,16 18,48 11,48" fill="#22c55e"/>
-<polygon points="31,16 38,16 29,48 22,48" fill="#ec4899"/>
-<polygon points="42,16 49,16 40,48 33,48" fill="#facc15"/>
-</svg>
-"""
-    with open(path, "w") as fh:
-        fh.write(svg)
+# ---------------------------------------------------------------- marca
+def paste_mark(im, x, y, size):
+    """Pega el isotipo de AF Running (logo2.png) en (x, y) con el tamaño dado."""
+    mark = Image.open(os.path.join(OUT, "brand/logo2.png")).convert("RGBA")
+    mark = mark.crop(mark.getbbox()).resize((size, size), Image.LANCZOS)
+    im.alpha_composite(mark, (int(x), int(y)))
 
 
 # ---------------------------------------------------------------- rutas
@@ -192,8 +155,7 @@ def card(path, title, place, km, pace, seed, size=(1200, 1500)):
         d.text((sx, y + 175), value, font=font("Inter-Bold.otf", 64), fill=GREEN if unit == "km" else TEXT)
         d.text((sx, y + 250), unit, font=font("Inter-SemiBold.otf", 30), fill=MUTED)
         sx += 330
-    # isotipo
-    draw_mark(d, W - 170, 60, 70)
+    paste_mark(im, W - 180, 50, 120)
     im.convert("RGB").save(os.path.join(OUT, path), quality=86)
 
 
@@ -216,7 +178,7 @@ def video(path, title, seed, seconds=6, fps=24, size=(720, 1280)):
         km = 10.0 * ease
         d.text((40, H - 220), f"{km:.2f}".replace(".", ","), font=font("Inter-Bold.otf", 110), fill=GREEN)
         d.text((40, H - 90), "KM · MODO DEMO", font=font("Inter-SemiBold.otf", 34), fill=MUTED)
-        draw_mark(d, W - 150, H - 200, 70)
+        paste_mark(im, W - 170, H - 230, 120)
         im.convert("RGB").save(f"{tmp}/f{f:04d}.png")
     subprocess.run(
         ["ffmpeg", "-y", "-loglevel", "error", "-framerate", str(fps), "-i", f"{tmp}/f%04d.png",
@@ -226,9 +188,6 @@ def video(path, title, seed, seconds=6, fps=24, size=(720, 1280)):
 
 
 if __name__ == "__main__":
-    logo_wide(os.path.join(OUT, "brand/logo.png"))
-    logo_square(os.path.join(OUT, "brand/logo2.png"))
-    favicon_svg(os.path.join(OUT, "..", "favicon.svg"))
     for i, (p, title, place, km, pace) in enumerate(GALLERY):
         card(p, title, place, km, pace, seed=i * 11 + 3)
     video("videos/highlight.mp4", "Fondo del domingo", 3)

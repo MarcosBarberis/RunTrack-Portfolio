@@ -61,7 +61,7 @@ export default function Home() {
             <div className="rounded-3xl border border-slate-800 bg-black/30 p-6 shadow-lg">
               <img
                 src={media("brand/logo.png")}
-                alt="RunTrack"
+                alt="AF Running"
                 className="h-20 md:h-24 w-auto"
               />
             </div>
@@ -192,7 +192,7 @@ export default function Home() {
 
       {/* ================= FOOTER ================= */}
       <footer className="pt-6 pb-12 text-center text-sm text-slate-400">
-        RunTrack • Creado por{" "}
+        AFRunning • Creado por{" "}
         <a
           href="https://www.linkedin.com/in/marcos-david-barberis-valle-437462307/"
           target="_blank"

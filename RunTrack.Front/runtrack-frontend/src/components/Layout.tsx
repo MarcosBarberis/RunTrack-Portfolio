@@ -58,14 +58,14 @@ export default function Layout() {
              <div className="w-10 h-10 bg-gradient-to-br from-primary-400 to-accent-500 rounded-xl flex items-center justify-center">
   		<img
   		  src={`${import.meta.env.BASE_URL}media/brand/logo2.png`}
-  		  alt="RunTrack"
+  		  alt="AFRunning"
   		  className="w-6 h-6 object-contain"
   		/>
 		</div>
             </div>
             <div>
               <h1 className="text-2xl font-display font-bold bg-gradient-to-r from-primary-400 via-accent-500 to-highlight-400 bg-clip-text text-transparent">
-                RunTrack
+                AFRunning
               </h1>
               <p className="text-xs text-slate-400 font-body">Performance Analytics</p>
             </div>
@@ -117,14 +117,14 @@ export default function Layout() {
                   <div className="w-10 h-10 bg-gradient-to-br from-primary-400 to-accent-500 rounded-xl flex items-center justify-center">
   		<img
    		 src={`${import.meta.env.BASE_URL}media/brand/logo2.png`}
-   		 alt="RunTrack"
+   		 alt="AFRunning"
   		  className="w-6 h-6 object-contain"
  		 />
 		</div>
                 </div>
                 <div>
                   <h1 className="text-2xl font-display font-bold bg-gradient-to-r from-primary-400 via-accent-500 to-highlight-400 bg-clip-text text-transparent">
-                    RunTrack
+                    AFRunning
                   </h1>
                   <p className="text-xs text-slate-400 font-body">Performance Analytics</p>
                 </div>

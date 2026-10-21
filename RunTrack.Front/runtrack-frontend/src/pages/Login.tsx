@@ -17,7 +17,7 @@ function loginAsRunner() {
       <div className="w-full max-w-md rounded-3xl border border-slate-800 bg-slate-900/90 backdrop-blur p-8">
         <div className="text-center">
           <h1 className="text-3xl font-bold font-display bg-gradient-to-r from-primary-400 via-accent-500 to-highlight-400 bg-clip-text text-transparent">
-            RunTrack
+            AFRunning
           </h1>
           <p className="mt-2 text-slate-400">Elegí tu perfil para continuar</p>
         </div>
